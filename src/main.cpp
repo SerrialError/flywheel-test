@@ -45,7 +45,9 @@ controller Controller = controller();
 
 void flywheelforward() {
   flywheel.spin(forward);
-  pusher.extend(cylinder1);
+  pusher.retract(cylinder2);
+  wait(0.5, seconds);
+  pusher.extend(cylinder2);
   Brain.playSound(siren);
 }
 void flywheelstop() {
@@ -69,8 +71,8 @@ int initialize() {
   return 0;
 }
 int main() {
-  Controller.ButtonCUp.pressed(flywheelforward);
-  Controller.ButtonCDown.pressed(flywheelstop);
+  Controller.ButtonRUp.pressed(flywheelforward);
+  Controller.ButtonRDown.pressed(flywheelstop);
   wait(5, msec);
   initialize();
 }
